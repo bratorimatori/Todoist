@@ -20,5 +20,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'linebreak-style': 0,
     'import/prefer-default-export': 0,
+    'max-len': ['error', { code: 130 }],
   },
 };
