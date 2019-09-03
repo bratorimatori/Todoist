@@ -21,5 +21,6 @@ module.exports = {
     'linebreak-style': 0,
     'import/prefer-default-export': 0,
     'max-len': ['error', { code: 130 }],
+    'react/prop-types': [2, { ignore: ['children'] }],
   },
 };

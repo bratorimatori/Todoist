@@ -8,12 +8,12 @@ export const Header = () => {
     <header className="header" data-testid="header">
       <nav>
         <div className="logo">
-          <img src="/images.logo.png" alt="Todoist" />
+          <img src="/images/logo.png" alt="Todoist" />
         </div>
         <div className="settings">
           <ul>
-            <li>+</li>
-            <li>
+            <li date-testid="quick-add-task-action" className="settings__add">+</li>
+            <li date-testid="dark-mode-action" className="settings__darkmode">
               <FaPizzaSlice />
             </li>
           </ul>

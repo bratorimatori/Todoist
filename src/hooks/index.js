@@ -42,8 +42,8 @@ export const useTasks = (selectedProject) => {
   return { tasks, archivedTasks };
 };
 
-export const useProject = () => {
-  const [projects, setprojects] = useState([]);
+export const useProjects = () => {
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     firebase.firestore().collection('projects').where('userId', '==', '33228d581c948c5c7db05f9e8eb15437')
@@ -56,8 +56,10 @@ export const useProject = () => {
         }));
 
         if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-          setprojects(allProjects);
+          setProjects(allProjects);
         }
       });
   }, [projects]);
+
+  return { projects, setProjects };
 };

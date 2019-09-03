@@ -7,23 +7,23 @@ import {
 export const Sidebar = () => (
   <div className="sidebar" data-test-id="sidebar">
     <ul className="sidebar__generic">
-      <li>
+      <li data-testid="inbox" className="inbox">
         <span><FaInbox /></span>
         <span>Inbox</span>
       </li>
-      <li>
+      <li data-testid="today" className="today">
         <span><FaRegCalendar /></span>
         <span>Today</span>
       </li>
-      <li>
+      <li data-testid="next_7" className="next_7">
         <span><FaRegCalendarAlt /></span>
         <span>Next 7 days</span>
       </li>
     </ul>
     <div className="sidebar__middle">
       <span><FaChevronDown /></span>
+      <h2>Projects</h2>
     </div>
-    <h2>Projects</h2>
 
     <ul className="sidebar__projects">Projects will be here!</ul>
     Add Project Component Here!
