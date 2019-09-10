@@ -1,9 +1,7 @@
 import {
   ProjectsContext,
   ProjectsProvider,
-  useProjectValue,
-
-
+  useProjectsValue,
 } from './project-context';
 
 import {
@@ -16,7 +14,7 @@ import {
 export {
   ProjectsContext,
   ProjectsProvider,
-  useProjectValue,
+  useProjectsValue,
   SelectedProjectsContext,
   SelectedProjectsProvider,
   useSelectedProjectValue,

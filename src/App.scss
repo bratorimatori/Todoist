@@ -249,8 +249,8 @@ header {
   }
 }
 
-/*Sidebar
-============================= */
+/* Sidebar
+     ============================================ */
 .sidebar {
   @include no-select();
   width: 266px;
@@ -267,17 +267,28 @@ header {
   }
 
   li {
-    padding-left: 10px;
-    padding-right: 15px;
-
     &:hover .sidebar__project-delete {
-      display: block;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
     }
   }
 
   &__project {
-    padding: 5px 0;
-    display: none;
+    cursor: pointer;
+
+    div:nth-child(1) {
+      padding: 5px 0;
+      padding-left: 10px;
+      padding-right: 15px;
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
 
     &-delete {
       margin-left: auto;
@@ -289,14 +300,14 @@ header {
     }
 
     &.active,
-    &.hover {
+    &:hover {
       font-weight: bold;
       background-color: white;
     }
 
     &:nth-child(1) {
       .sidebar__dot {
-        color: #61ccbc;
+        color: #6accbc;
       }
     }
     &:nth-child(2) {
@@ -321,7 +332,7 @@ header {
     }
   }
 
-  &__project {
+  &__projects {
     padding-left: 3px;
   }
 
@@ -337,16 +348,19 @@ header {
   &__middle {
     margin-top: 20px;
     margin-bottom: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     border-bottom: $generic-border;
     padding-left: 10px;
     cursor: pointer;
 
     span {
-      color: #00000a;
+      color: #0000008a;
       margin-right: 10px;
 
-      svg.hidden-project {
+      svg.hidden-projects {
+        -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg);
       }
     }
@@ -362,28 +376,402 @@ header {
 
   &__generic {
     li {
-      padding: 10px 0 10px 10px;
       list-style-type: none;
       color: #333;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       cursor: pointer;
       line-height: 1.5;
       font-size: 15px;
+      padding-left: 0;
+      padding-right: 0;
+
+      div:nth-child(1) {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 10px 0 10px 10px;
+        width: 100%;
+
+        span:first-of-type {
+          margin-right: 10px;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+
+          svg {
+            width: 18px;
+            height: 18px;
+            color: #555;
+          }
+        }
+      }
+
+      &.active,
+      &:hover {
+        font-weight: bold;
+        background-color: white;
+      }
+    }
+  }
+}
+
+/* Show Confirm Delete
+     ============================================ */
+.project-delete-modal {
+  position: relative;
+  @include box-overlay();
+
+  &__inner {
+    @include box-overlay();
+    left: -235px;
+    z-index: 99;
+    width: 200px;
+    padding: 10px;
+    top: 220px;
+    right: 0;
+    background-color: white;
+    position: absolute;
+
+    p {
+      align-content: flex-end;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height: normal;
+      font-weight: normal;
+      font-size: 15px;
+    }
+
+    button {
+      @include btn('50px');
+    }
+    span {
+      @include cancel();
+      font-weight: normal;
+    }
+  }
+}
+
+/* Main Content
+     ============================================ */
+.content {
+  display: grid;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+  max-width: 922px;
+  margin: auto;
+}
+
+/* Tasks
+     ============================================ */
+
+.tasks {
+  width: 656px;
+  background-color: white;
+  margin-left: 266px;
+  border-right: $generic-border;
+  min-height: calc(100vh);
+  vertical-align: top;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 80px;
+  padding-bottom: 84px;
+
+  @include mq('900') {
+    margin-left: 0;
+    width: auto;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 30px 20 px 0;
+  }
+
+  .add-task {
+    margin-top: 20px;
+  }
+
+  &__list li {
+    display: flex;
+    line-height: 18px;
+    color: #333;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    list-style-type: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .checkbox-holder {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 16px;
+
+    .checkbox {
+      cursor: pointer;
+      border-color: gray;
+      color: #343434;
+      height: 16px;
+      width: 16px;
+      display: block;
+      border: 1px solid gray;
+      border-radius: 16px;
+    }
+  }
+}
+
+/* Add Project
+     ============================================ */
+.add-project {
+  padding-left: 13px;
+  padding-right: 20px;
+  margin-top: 20px;
+
+  &__input {
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: white !important;
+    border-radius: 3px;
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__submit {
+    @include btn('100px');
+  }
+
+  &__cancel {
+    @include btn('100px');
+  }
+}
+
+/* Add Task
+  ============================================ */
+.add-task {
+  &__overlay {
+    background: rgba(102, 102, 102, 0.5);
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    height: calc(100vh);
+
+    .add-task__main {
+      @include mq('900px') {
+        width: 90%;
+      }
+
+      overflow: visible;
+      margin-bottom: 20px;
+      margin-top: 55px;
+      border-radius: 5px;
+      background-color: white;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      padding: 20px 30px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+
+      .header {
+        font-size: 13px;
+        margin-bottom: 20px;
+        float: left;
+      }
+    }
+
+    .add-task__cancel-x {
+      cursor: pointer;
+      color: gray;
+      float: right;
+      font-weight: bold;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+
+  &__main {
+    position: relative;
+  }
+
+  &__project,
+  &__date {
+    cursor: pointer;
+    float: right;
+    color: gray;
+    margin: 20px 10px;
+  }
+
+  &__project {
+    margin-right: 0;
+  }
+
+  &__content {
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: white !important;
+    border-radius: 3px;
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__cancel,
+  &__submit {
+    @include no-select;
+  }
+
+  &__cancel {
+    @include cancel();
+  }
+
+  &__submit {
+    @include btn('90px');
+  }
+}
+
+.add-task__shallow,
+.add-project {
+  @include no-select;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.add-task__plus,
+.add-project__plus {
+  color: #dd4b39;
+  font-size: 18px;
+}
+
+.add-task__text,
+.add-project__text {
+  display: inline-block;
+  color: #545454;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+/* Add Task
+  ============================================ */
+.task-date {
+  @include box-overlay();
+  background-color: #fff;
+  widows: 200px;
+  right: 0;
+
+  &__li {
+    @include task-item();
+
+    span:first-of-type {
+      margin-right: 10px;
+
+      svg {
+        fill: grey;
+      }
+    }
+  }
+}
+
+/* Task Date
+  ============================================ */
+.task-date {
+  @include box-overlay();
+  background-color: #fff;
+  width: 200px;
+  right: 0;
+
+  &__list li {
+    @include task-item();
+    padding: 0;
+
+    div:nth-child(1) {
+      padding: 10px;
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
 
       span:first-of-type {
         margin-right: 10px;
 
         svg {
-          width: 18px;
-          height: 18px;
-          color: #555;
+          fill: grey;
         }
       }
-
-      &.active,
-      &.hover {
-        font-weight: bold;
-      }
     }
+  }
+}
+
+/* Project Overlay
+    ============================================ */
+.project-overlay {
+  @include box-overlay();
+  background-color: white;
+
+  @include mq('900px') {
+    width: 200px;
+    right: 0;
+  }
+
+  &__list li {
+    @include task-item();
+    padding: 0;
+
+    div:nth-child(1) {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}
+
+/* Add Project
+    ============================================ */
+.add-project {
+  padding-left: 13px;
+  padding-right: 20px;
+  margin-top: 20px;
+
+  &__input {
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: white !important;
+    border-radius: 3px;
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__submit {
+    @include btn('100px');
+  }
+
+  &__cancel {
+    @include cancel();
   }
 }
