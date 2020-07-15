@@ -2,10 +2,9 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
-  extends: [
-    'airbnb',
-  ],
+  extends: ['airbnb'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -17,17 +16,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
-    "import/prefer-default-export": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "linebreak-style": 0,
-    "indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
-    "no-tabs": 0,
-    "react/prop-types": 0,
-    "react/jsx-indent": [2, "tab"],
-    "react/jsx-indent-props": [2, "tab"],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'linebreak-style': 0,
+    'import/prefer-default-export': 0,
+    'max-len': ['error', { code: 130 }],
+    'react/prop-types': [2, { ignore: ['children'] }],
   },
 };
